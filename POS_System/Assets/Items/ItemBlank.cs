@@ -6,8 +6,8 @@ using UnityEngine;
 public class ItemBlank : ScriptableObject
 {
     public string item_name;
-    public uint upc;
-    public uint sku;
+    public ulong upc;
+    public ulong sku;
     public float price;
     public int quanity;
 }
