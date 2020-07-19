@@ -7,16 +7,16 @@ using UnityEngine.UI;
 public class ItemEntryController : MonoBehaviour
 {
     public string itemCode;
-    public GameObject inputField;
+    public TMP_InputField inputField;
 
     public void StoreItemCode()
     {
-        itemCode = inputField.GetComponent<TextMeshProUGUI>().text;
+        itemCode = inputField.text;
         Debug.Log(itemCode);
     }
 
     public void NumberPadNumber(int number)
     {
-        inputField.GetComponent<TextMeshProUGUI>().text += number.ToString();
+        inputField.text += number.ToString();
     }
 }
