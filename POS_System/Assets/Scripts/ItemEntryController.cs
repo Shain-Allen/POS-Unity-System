@@ -6,17 +6,20 @@ using UnityEngine.UI;
 
 public class ItemEntryController : MonoBehaviour
 {
-    public string itemCode;
     public TMP_InputField inputField;
 
-    public void StoreItemCode()
+    public void NumberPadNumber(string number)
     {
-        itemCode = inputField.text;
-        Debug.Log(itemCode);
+        inputField.text += number;
     }
 
-    public void NumberPadNumber(int number)
+    public void NumberPadClear()
     {
-        inputField.text += number.ToString();
+        inputField.text = "";
+    }
+
+    public void NumberPadBackButton()
+    {
+        inputField.text = inputField.text.Remove(inputField.text.Length - 1);
     }
 }
