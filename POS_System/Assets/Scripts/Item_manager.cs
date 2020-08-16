@@ -15,7 +15,7 @@ public class Item_manager : MonoBehaviour
 
     public void ItemEntry()
     {
-        if(inventory.Count == 0)
+        if(inventory.Count == 0 || ItemEntryField.text == "")
         {
             GameObject newItem = Instantiate(itemBlank);
             newItem.transform.SetParent(itemContainer.transform);
