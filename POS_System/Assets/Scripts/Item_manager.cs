@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Item_manager : MonoBehaviour
 {
@@ -17,8 +18,7 @@ public class Item_manager : MonoBehaviour
     {
         if(inventory.Count == 0 || ItemEntryField.text == "")
         {
-            GameObject newItem = Instantiate(itemBlank);
-            newItem.transform.SetParent(itemContainer.transform);
+            GameObject newItem = Instantiate(itemBlank, itemContainer.transform, false);
         }
         else
         {
@@ -26,9 +26,22 @@ public class Item_manager : MonoBehaviour
 
             if (ItemLookUpCode.Length == 8)
             {
-                FindBySKU(Convert.ToUInt64(ItemLookUpCode));
-                GameObject newItem = Instantiate(itemBlank);
-                newItem.transform.SetParent(itemContainer.transform);
+                GameObject newItem;
+                ItemBlank itemInfo = FindBySKU(Convert.ToUInt64(ItemLookUpCode));
+                if (itemInfo == null)
+                {
+                    newItem = Instantiate(itemBlank, itemContainer.transform, false);
+
+                }
+                else
+                {
+                    newItem = Instantiate(itemBlank, itemContainer.transform, false);
+                    //Debug.Log(itemInfo.name);
+                    //Debug.Log(newItem.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text);
+                    newItem.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = itemInfo.name;
+                    newItem.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "$" + itemInfo.price.ToString();
+                    newItem.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = itemInfo.upc.ToString();
+                }
             }
         }
     }
